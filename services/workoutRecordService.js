@@ -34,10 +34,24 @@ const workOutRecordService = {
       } catch (err) {
         throw new Error("DB 에러" + err.message);
       }
+  },
+
+  updateRecord: async (updateData) => {
+    try {
+      const [affectRows, updatedRecords] = await WorkoutRecord.update(updateData,{
+        where: {
+          recordId: updateData.recordId,
+        },
+        returning: true,
+      });
+      if (affectRows === 0) {
+        throw new Error("해당 기록을 찾을 수 없습니다.");
+      }
+      return 'success';  
+    } catch (err) {
+      throw new Error('DB Error' + err.message);
+    }
   }
-
-
-
 }
 
 module.exports = workOutRecordService;

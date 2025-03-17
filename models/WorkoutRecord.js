@@ -78,7 +78,7 @@ const WorkoutRecord = sequelize.define(
     tableName: "workout_record",
     timestamps: true,
     createdAt: 'created_at',
-    updatedAt: 'update_at'
+    updatedAt: 'updated_at'
   }
 );
 

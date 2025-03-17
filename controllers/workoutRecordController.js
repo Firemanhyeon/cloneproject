@@ -19,6 +19,16 @@ exports.createRecord = async (req, res) => {
     }
 }
 
+exports.updateRecord = async (req, res) => {
+  try {
+    const request = req.body;
+    const result = await workOutRecordService.updateRecord(request);
+    res.status(200).json('success');
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 
 exports.deleteRecord = async (req, res) => {
     try {

@@ -5,6 +5,7 @@ const workoutRecordController = require("../controllers/workoutRecordController"
 
 // router.get('/', workoutRecordController.getRecords);
 router.post('/', workoutRecordController.createRecord);
+router.put('/', workoutRecordController.updateRecord);
 router.delete('/', workoutRecordController.deleteRecord);
 router.get('/:recordId', workoutRecordController.detailRecord);
 router.get('/week', workoutRecordController.weekRecord);
