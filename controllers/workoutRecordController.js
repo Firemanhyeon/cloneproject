@@ -22,7 +22,7 @@ exports.createRecord = async (req, res) => {
 exports.updateRecord = async (req, res) => {
   try {
     const request = req.body;
-    const result = await workOutRecordService.updateRecord(request);
+    await workOutRecordService.updateRecord(request);
     res.status(200).json('success');
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -31,7 +31,9 @@ exports.updateRecord = async (req, res) => {
 
 
 exports.deleteRecord = async (req, res) => {
-    try {
+  try {
+    const request = req.body;
+      await workOutRecordService.deleteRecord(request);
       res.status(200).json("success");
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -39,11 +41,13 @@ exports.deleteRecord = async (req, res) => {
 }
 
 exports.detailRecord = async (req, res) => {
-    try {
-      res.status(200).json("success");
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
+  try {
+    const id = req.params.recordId;
+    const result = await workOutRecordService.detailRecord(id);
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 }
 
 exports.weekRecord = async (req, res) => {

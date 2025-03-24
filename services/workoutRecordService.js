@@ -51,6 +51,34 @@ const workOutRecordService = {
     } catch (err) {
       throw new Error('DB Error' + err.message);
     }
+  },
+  deleteRecord: async (deleteData) => {
+    try {
+      const result = await WorkoutRecord.destroy({
+        where: {
+          recordId: deleteData.recordId,
+        },
+      });
+      if (result === 0) {
+        throw new Error("해당 기록을 찾을 수 없습니다");
+      }
+      return 'success';
+    } catch (error) {
+      throw new Error('DB Error ', err.message);
+    }
+  },
+  detailRecord: async (recordId) => {
+    try {
+      const result = await WorkoutRecord.findOne({
+        where: {
+          recordId: recordId
+        }
+      })
+      console.log(result.dataValues);
+      return result.dataValues;
+    } catch (error) {
+      throw new Error('DB Error ' + error.message);
+    }
   }
 }
 
